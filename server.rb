@@ -26,6 +26,7 @@ $client_secret = ENV['CLIENT_SECRET']
 $callback_url = "http://localhost:#{port}/callback"
 
 server.mount '/', RequestHandler
+server.mount '/assets', WEBrick::HTTPServlet::FileHandler, './assets'
 
 trap 'INT' do server.shutdown end
 
