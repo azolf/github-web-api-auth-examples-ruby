@@ -9,25 +9,18 @@ require 'base64'
 require_relative 'request_handler'
 require_relative 'request_handlers/index'
 require_relative 'helpers/response'
+require_relative 'helpers/request'
 require_relative 'request_handlers/login'
 require_relative 'request_handlers/callback'
 require_relative 'request_handlers/me'
 require_relative 'request_handlers/refresh_token'
+require_relative 'lib/configuration'
+require_relative 'initializers/ruby_oauth'
+require_relative 'lib/provider_client'
 
-$scopes = %w[].join(' ')
-
-port = 8000
-
-server = WEBrick::HTTPServer.new Port: port #
-
-$client_id = ENV['CLIENT_ID']
-$client_secret = ENV['CLIENT_SECRET']
-
-$callback_url = "http://localhost:#{port}/callback"
-
+server = WEBrick::HTTPServer.new Port: RubyOuath.configuration.webserver_port
 server.mount '/', RequestHandler
 server.mount '/assets', WEBrick::HTTPServlet::FileHandler, './assets'
-
-trap 'INT' do server.shutdown end
+trap('INT') { server.shutdown }
 
 server.start
