@@ -18,7 +18,7 @@ $ cd github-web-api-auth-examples-ruby/
 $ bundle install
 ```
 
-You could edit the Github Client Id and Client Secret in `server.rb` file.
+You could edit the Github Client Id and Client Secret in `initializers/ruby_oauth.rb` file.
 ```
 ...
 $client_id = ENV['CLIENT_ID']
@@ -47,11 +47,16 @@ azolf/github-web-api-auth-examples-ruby:latest
 ## Using docker-compose
 You could also clone the repository and start the container with the `docker-compose.yml` file. You just need to replace your Client Id and Client Secret in it.
 ```
-...
+version: '3'
+services:
+  app:
+    image: azolf/github-web-api-auth-examples-ruby
+    container_name: github-web-api-auth-examples-ruby
+    ports:
+      - 8000:8000
     environment:
       - CLIENT_ID=YOUR_CLIENT_ID
       - CLIENT_SECRET=YOUR_CLIENT_SECRET
-...
 ```
 
 ```
