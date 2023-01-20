@@ -1,8 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    cgi (0.3.6)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    erb (4.0.2)
+      cgi (>= 0.3.3)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -24,6 +27,7 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
+  erb
   rest-client
   webrick
 
